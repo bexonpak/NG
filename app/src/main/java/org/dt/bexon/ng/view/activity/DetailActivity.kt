@@ -14,6 +14,8 @@ import android.text.Html
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.view.animation.Animation
+import android.view.animation.TranslateAnimation
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -86,7 +88,12 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setColor() {
         Palette.from(bitmap).generate { palette ->
-            val swatch = palette.darkMutedSwatch
+            var swatch = palette.darkMutedSwatch
+            if (swatch == null) swatch = palette.darkVibrantSwatch
+            if (swatch == null) swatch = palette.mutedSwatch
+            if (swatch == null) swatch = palette.vibrantSwatch
+            if (swatch == null) swatch = palette.lightMutedSwatch
+            if (swatch == null) swatch = palette.lightVibrantSwatch
             if (swatch != null) {
                 detail_constraint_layout.setBackgroundColor(swatch.rgb)
                 detail_title.setTextColor(swatch.titleTextColor)

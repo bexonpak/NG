@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun verifyStoragePermissions(activity: Activity){
         try {
-            var permissions: Int = ActivityCompat.checkSelfPermission(activity, "android.permission.WRITE_EXTERNAL_STORAGE");
+            val permissions: Int = ActivityCompat.checkSelfPermission(activity, "android.permission.WRITE_EXTERNAL_STORAGE")
             if (permissions != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE,REQUEST_EXTERNAL_STORAGE)
             }
